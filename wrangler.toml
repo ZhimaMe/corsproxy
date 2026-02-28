@@ -1,0 +1,16 @@
+# Wrangler 配置文件
+name = "cors-proxy"
+main = "src/index.js"
+compatibility_date = "2026-02-28"
+
+# 环境变量
+[vars]
+# 可以在这里添加环境变量
+
+# 部署配置
+[env.production]
+name = "cors-proxy-production"
+
+# 开发配置
+[env.development]
+name = "cors-proxy-development"

@@ -1,19 +1,22 @@
 {
   "name": "cors-proxy",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CORS Proxy for Cloudflare Workers",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:production": "wrangler deploy --env production"
   },
-  "keywords": [],
+  "keywords": [
+    "cors",
+    "proxy",
+    "cloudflare",
+    "workers"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "http-proxy-middleware": "^3.0.5"
+  "devDependencies": {
+    "wrangler": "^3.0.0"
   }
 }
