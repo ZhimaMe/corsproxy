@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Proxy 测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CORS Proxy 测试</h1>
+        <p>点击按钮测试 CORS Proxy 是否正常工作：</p>
+        <button onclick="testCorsProxy()">测试代理请求</button>
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        function testCorsProxy() {
+            const url = 'http://localhost:443/https://moonbazaar.xyz/home/get_live_feed.php?limit=20&offset=0';
+            const responseDiv = document.getElementById('response');
+            
+            // 清空之前的响应
+            responseDiv.innerHTML = '<p>正在请求...</p>';
+            
+            // 发送请求
+            fetch(url)
+                .then(response => {
+                    console.log('响应状态:', response.status);
+                    console.log('响应头:', response.headers);
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('响应数据:', data);
+                    responseDiv.innerHTML = `<h3>响应内容：</h3>${data}`;
+                })
+                .catch(error => {
+                    console.error('错误:', error);
+                    responseDiv.innerHTML = `<h3 class="error">错误：</h3>${error.message}`;
+                });
+        }
+    </script>
+</body>
+</html>
