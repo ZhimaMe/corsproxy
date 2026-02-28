@@ -1,6 +1,12 @@
 # Node.js dependencies
 node_modules/
 
+# Test files
+test-cors-proxy.html
+
+# Gitignore file itself
+.gitignore
+
 # Environment variables
 .env
 
